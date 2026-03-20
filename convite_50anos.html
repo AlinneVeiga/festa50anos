@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alinne faz 50! — Churrasco em Santa Teresa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-deep: #3B1563;
+    --purple-rich: #5B2D8E;
+    --violet: #7B4FAF;
+    --lilac: #B48EDB;
+    --lilac-light: #D4BEF0;
+    --lilac-pale: #EDE3F7;
+    --silver: #C0C0C0;
+    --silver-light: #E8E8E8;
+    --white: #FEFEFE;
+    --cream: #FAF7FF;
+    --text-dark: #2A1245;
+    --text-muted: #6B5A7E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Animated background ── */
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .bg-layer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(91,45,142,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(180,142,219,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(192,192,192,0.05) 0%, transparent 60%);
+    animation: drift 25s ease-in-out infinite alternate;
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-3%, -3%) rotate(2deg); }
+  }
+
+  /* ── Sparkle dots ── */
+  .sparkles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--silver);
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 0.8; transform: scale(1.2); }
+  }
+
+  /* ── Container ── */
+  .invitation {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* ── Hero Card ── */
+  .hero {
+    background: linear-gradient(145deg, var(--purple-deep) 0%, var(--purple-rich) 40%, var(--violet) 100%);
+    border-radius: 24px;
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+      0 25px 60px rgba(59,21,99,0.3),
+      0 0 0 1px rgba(255,255,255,0.08) inset;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 30% 0%, rgba(212,190,240,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 70% 100%, rgba(192,192,192,0.1) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--silver), transparent);
+    border-radius: 2px;
+  }
+
+  .age-badge {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 96px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -4px;
+    position: relative;
+    margin-bottom: 8px;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .age-badge::after {
+    content: 'anos';
+    font-size: 22px;
+    letter-spacing: 6px;
+    font-weight: 400;
+    display: block;
+    color: var(--lilac-light);
+    text-transform: uppercase;
+    margin-top: -4px;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--white);
+    margin: 20px 0 6px;
+    letter-spacing: 1px;
+    animation: fadeInUp 1s ease-out 0.15s backwards;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--lilac-light);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: fadeInUp 1s ease-out 0.3s backwards;
+  }
+
+  .silver-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--silver), transparent);
+    margin: 28px auto;
+    animation: fadeInUp 1s ease-out 0.4s backwards;
+  }
+
+  .hero-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--white);
+    animation: fadeInUp 1s ease-out 0.5s backwards;
+  }
+
+  .hero-date strong {
+    font-weight: 700;
+    color: var(--lilac-light);
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Content Cards ── */
+  .card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 36px 32px;
+    margin-top: 16px;
+    box-shadow: 0 4px 20px rgba(59,21,99,0.06);
+    border: 1px solid rgba(180,142,219,0.12);
+    animation: fadeInUp 0.8s ease-out backwards;
+  }
+
+  .card:nth-child(2) { animation-delay: 0.1s; }
+  .card:nth-child(3) { animation-delay: 0.2s; }
+  .card:nth-child(4) { animation-delay: 0.3s; }
+  .card:nth-child(5) { animation-delay: 0.4s; }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: var(--lilac-pale);
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--purple-deep);
+  }
+
+  .card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .card p + p {
+    margin-top: 12px;
+  }
+
+  .card p strong {
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+
+  /* ── Info Grid ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .info-item {
+    background: var(--lilac-pale);
+    border-radius: 14px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+
+  .info-item.full { grid-column: 1 / -1; }
+
+  .info-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--violet);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .info-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--purple-deep);
+  }
+
+  .info-value small {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    margin-top: 2px;
+  }
+
+  /* ── Highlight Boxes ── */
+  .highlight {
+    background: linear-gradient(135deg, var(--lilac-pale), rgba(192,192,192,0.15));
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 16px;
+    border-left: 3px solid var(--violet);
+  }
+
+  .highlight p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .highlight .emoji-lead {
+    font-size: 16px;
+    margin-right: 6px;
+  }
+
+  /* ── Music section ── */
+  .music-callout {
+    background: linear-gradient(135deg, var(--purple-deep), var(--purple-rich));
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .music-callout::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(212,190,240,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .music-callout p {
+    color: var(--lilac-light) !important;
+    font-size: 15px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .music-callout .music-emoji {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* ── RSVP Button ── */
+  .rsvp-section {
+    text-align: center;
+    margin-top: 16px;
+    padding: 44px 32px;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(59,21,99,0.06);
+    border: 1px solid rgba(180,142,219,0.12);
+  }
+
+  .rsvp-section .card-title {
+    margin-bottom: 8px;
+  }
+
+  .rsvp-section p {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .rsvp-btn {
+    display: inline-block;
+    padding: 16px 48px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--purple-rich) 0%, var(--violet) 100%);
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(91,45,142,0.35);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rsvp-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.15) 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .rsvp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(91,45,142,0.45);
+  }
+
+  .rsvp-btn:hover::before { opacity: 1; }
+
+  .rsvp-deadline {
+    font-size: 13px;
+    color: var(--lilac);
+    margin-top: 16px;
+    font-weight: 400;
+  }
+
+  .rsvp-deadline strong {
+    color: var(--violet);
+    font-weight: 600;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 40px 20px 30px;
+    color: var(--lilac);
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  .footer .heart {
+    display: inline-block;
+    color: var(--violet);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 480px) {
+    .invitation { padding: 12px; }
+    .hero { padding: 48px 24px 40px; border-radius: 20px; }
+    .age-badge { font-size: 72px; }
+    .hero-name { font-size: 34px; }
+    .card { padding: 28px 22px; border-radius: 16px; }
+    .info-grid { grid-template-columns: 1fr; }
+    .rsvp-btn { padding: 14px 36px; font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background effects -->
+<div class="bg-layer"></div>
+<div class="sparkles" id="sparkles"></div>
+
+<div class="invitation">
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="age-badge">50</div>
+    <h1 class="hero-name">Alinne celebra!</h1>
+    <p class="hero-subtitle">Churrasco de aniversário</p>
+    <div class="silver-line"></div>
+    <p class="hero-date">Domingo, <strong>26 de abril de 2026</strong></p>
+  </div>
+
+  <!-- ── QUANDO & ONDE ── -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📍</div>
+      <h2 class="card-title">Quando & Onde</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">Data</div>
+        <div class="info-value">26/04<small>Domingo</small></div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Horário</div>
+        <div class="info-value">13h — 18h<small>5 horas de festa</small></div>
+      </div>
+      <div class="info-item full">
+        <div class="info-label">Local</div>
+        <div class="info-value">Casa Vermelha Rio<small>Rua Aarão Reis, 126 — Santa Teresa, RJ</small></div>
+      </div>
+    </div>
+    <div class="highlight" style="margin-top: 20px;">
+      <p><span class="emoji-lead">⏰</span> <strong>A festa começa às 13h em ponto!</strong> O espaço é nosso por tempo limitado, então cheguem no horário pra aproveitar cada minuto. Quem chegar atrasado vai perder a primeira rodada de carne na brasa!</p>
+    </div>
+  </div>
+
+  <!-- ── O QUE ESPERAR ── -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔥</div>
+      <h2 class="card-title">O que esperar</h2>
+    </div>
+    <p>Churrasco completo com picanha, fraldinha, costela, salmão, linguiça, corações, pão de alho, legumes grelhados e muito mais. Guarnições à vontade — arroz, farofa, maionese, salpicão e saladas. De sobremesa: bolo de chocolate com nozes, bolo de chantilly com morango e docinhos finos.</p>
+    <p>Tem <strong>piscina</strong> — tragam roupa de banho para quem quiser! As crianças são muito bem-vindas, temos cardápio kids e espaço para brincar.</p>
+    <div class="highlight">
+      <p><span class="emoji-lead">🍺</span> <strong>Bebidas:</strong> teremos chopp na chopeira, mate gelado, sucos naturais, refrigerantes e água à vontade. Para os amigos que curtem cerveja artesanal, vinho ou alguma bebida especial — tragam a sua! O chopp é por minha conta.</p>
+    </div>
+    <div class="highlight">
+      <p><span class="emoji-lead">🥤</span> Teremos copos descartáveis, mas se você tem um <strong>copo térmico</strong>, traga o seu! Além de mais sustentável, mantém a bebida geladinha por mais tempo.</p>
+    </div>
+  </div>
+
+  <!-- ── MÚSICA ── -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🎵</div>
+      <h2 class="card-title">Música ao vivo</h2>
+    </div>
+    <p>Teremos um cantinho musical prontinho para receber de 3 a 4 músicos. O palco é de vocês!</p>
+    <div class="music-callout">
+      <span class="music-emoji">🎸🎤🪘</span>
+      <p><strong style="color: #fff;">Músicos amigos, tragam seus instrumentos!</strong><br>Jams espontâneas são mais que bem-vindas. Bora fazer esse som acontecer!</p>
+    </div>
+  </div>
+
+  <!-- ── IMPORTANTE ── -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💜</div>
+      <h2 class="card-title">Combinados</h2>
+    </div>
+    <p>O espaço tem capacidade para <strong>80 pessoas</strong> (crianças incluídas), então preciso da confirmação de cada um pra organizar tudo direitinho. Por isso, peço que respondam o RSVP o quanto antes!</p>
+    <p>Estou preparando tudo com muito carinho pra esse dia ser inesquecível. Vai ter comida de qualidade, chopp gelado, piscina e muita música boa — <strong>só falta você!</strong></p>
+  </div>
+
+  <!-- ── RSVP ── -->
+  <div class="rsvp-section">
+    <h2 class="card-title">Confirme sua presença</h2>
+    <p>Clique no botão abaixo e preencha rapidinho — são 30 segundos!</p>
+    <a href="https://script.google.com/macros/s/AKfycbx7vicPvnvvjQTVJyxNYkN73MheK9HPbl2_JJotHBf2t3VpAm9zXQciXCe952Z6NgChpA/exec" class="rsvp-btn" target="_blank">
+      Confirmar Presença
+    </a>
+    <p class="rsvp-deadline">Responda até <strong>4 de abril de 2026</strong></p>
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="footer">
+    <p>Feito com <span class="heart">♥</span> pra celebrar essa data com quem eu amo</p>
+    <p style="margin-top: 6px;">Vai ser muito especial se vocês puderem ir!</p>
+    <p style="margin-top: 4px; opacity: 0.7;">Alinne · 50 anos · Santa Teresa · 26/04/2026</p>
+  </div>
+
+</div>
+
+<script>
+// Generate sparkles
+const container = document.getElementById('sparkles');
+for (let i = 0; i < 30; i++) {
+  const s = document.createElement('div');
+  s.className = 'sparkle';
+  s.style.left = Math.random() * 100 + '%';
+  s.style.top = Math.random() * 100 + '%';
+  s.style.animationDelay = (Math.random() * 5) + 's';
+  s.style.animationDuration = (2 + Math.random() * 3) + 's';
+  s.style.width = s.style.height = (2 + Math.random() * 3) + 'px';
+  container.appendChild(s);
+}
+</script>
+</body>
+</html>

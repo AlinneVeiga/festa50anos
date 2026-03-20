@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP — Churrasco 50 Anos da Alinne</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-deep: #3B1563;
+    --purple-rich: #5B2D8E;
+    --violet: #7B4FAF;
+    --lilac: #B48EDB;
+    --lilac-light: #D4BEF0;
+    --lilac-pale: #EDE3F7;
+    --silver: #C0C0C0;
+    --white: #FEFEFE;
+    --cream: #FAF7FF;
+    --text-dark: #2A1245;
+    --text-muted: #6B5A7E;
+    --success: #4CAF50;
+    --error: #E53935;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* ── Header ── */
+  .form-header {
+    background: linear-gradient(145deg, var(--purple-deep) 0%, var(--violet) 100%);
+    border-radius: 20px 20px 0 0;
+    padding: 40px 32px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 0%, rgba(212,190,240,0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .form-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--white);
+    position: relative;
+  }
+
+  .form-header p {
+    color: var(--lilac-light);
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 8px;
+    position: relative;
+  }
+
+  /* ── Form Body ── */
+  .form-body {
+    background: var(--white);
+    border-radius: 0 0 20px 20px;
+    padding: 36px 32px 40px;
+    box-shadow: 0 8px 30px rgba(59,21,99,0.08);
+    border: 1px solid rgba(180,142,219,0.12);
+    border-top: none;
+  }
+
+  .field {
+    margin-bottom: 24px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+
+  .field label .required {
+    color: var(--violet);
+  }
+
+  .field input[type="text"],
+  .field input[type="tel"],
+  .field input[type="number"],
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-dark);
+    background: var(--cream);
+    border: 1.5px solid rgba(180,142,219,0.25);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--violet);
+    box-shadow: 0 0 0 3px rgba(123,79,175,0.1);
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .field select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237B4FAF' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  /* ── Radio/Checkbox groups ── */
+  .option-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .option-item {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .option-item input {
+    display: none;
+  }
+
+  .option-item label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    background: var(--cream);
+    border: 1.5px solid rgba(180,142,219,0.25);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+    transition: all 0.25s;
+    text-align: center;
+  }
+
+  .option-item input:checked + label {
+    background: var(--lilac-pale);
+    border-color: var(--violet);
+    color: var(--purple-deep);
+    font-weight: 500;
+  }
+
+  .option-item label:hover {
+    border-color: var(--lilac);
+  }
+
+  /* ── Children fields ── */
+  .children-details {
+    display: none;
+    margin-top: 16px;
+    padding: 20px;
+    background: var(--lilac-pale);
+    border-radius: 14px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .children-details.visible {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .children-details label {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .children-details input {
+    width: 80px;
+    text-align: center;
+  }
+
+  /* ── Submit ── */
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--purple-rich), var(--violet));
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 6px 24px rgba(91,45,142,0.3);
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 32px rgba(91,45,142,0.4);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* ── Messages ── */
+  .msg {
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    margin-top: 16px;
+    display: none;
+  }
+
+  .msg.success {
+    background: #E8F5E9;
+    color: #2E7D32;
+    border: 1px solid #A5D6A7;
+    display: block;
+  }
+
+  .msg.error {
+    background: #FFEBEE;
+    color: #C62828;
+    border: 1px solid #EF9A9A;
+    display: block;
+  }
+
+  /* ── Success State ── */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 32px;
+  }
+
+  .success-screen.visible {
+    display: block;
+  }
+
+  .success-screen .check {
+    font-size: 56px;
+    margin-bottom: 16px;
+  }
+
+  .success-screen h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--purple-deep);
+    margin-bottom: 8px;
+  }
+
+  .success-screen p {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* ── Footer note ── */
+  .footer-note {
+    text-align: center;
+    padding: 24px 16px;
+    font-size: 12px;
+    color: var(--lilac);
+    font-weight: 300;
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 12px; }
+    .form-header { padding: 32px 20px 24px; }
+    .form-body { padding: 28px 20px 32px; }
+    .option-group { flex-direction: column; }
+    .option-item { min-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="form-header">
+    <h1>Confirme sua presença 💜</h1>
+    <p>Churrasco dos 50 anos da Alinne — 26 de abril, Santa Teresa</p>
+  </div>
+
+  <div class="form-body" id="formBody">
+    <form id="rsvpForm" onsubmit="return handleSubmit(event)">
+
+      <!-- Nome -->
+      <div class="field">
+        <label>Seu nome completo <span class="required">*</span></label>
+        <input type="text" name="nome" required placeholder="Ex: Maria da Silva">
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="field">
+        <label>WhatsApp (com DDD) <span class="required">*</span></label>
+        <input type="tel" name="whatsapp" required placeholder="(21) 99999-9999">
+      </div>
+
+      <!-- Presença -->
+      <div class="field">
+        <label>Você vai? <span class="required">*</span></label>
+        <div class="option-group">
+          <div class="option-item">
+            <input type="radio" name="presenca" id="pres_sim" value="Sim, estarei lá!" required>
+            <label for="pres_sim">✅ Sim, estarei lá!</label>
+          </div>
+          <div class="option-item">
+            <input type="radio" name="presenca" id="pres_nao" value="Infelizmente não poderei ir">
+            <label for="pres_nao">😢 Não poderei ir</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acompanhante -->
+      <div class="field" id="acompanhanteField">
+        <label>Vai levar acompanhante (parceiro/parceira)?</label>
+        <div class="option-group">
+          <div class="option-item">
+            <input type="radio" name="acompanhante" id="acomp_sim" value="Sim">
+            <label for="acomp_sim">Sim</label>
+          </div>
+          <div class="option-item">
+            <input type="radio" name="acompanhante" id="acomp_nao" value="Não" checked>
+            <label for="acomp_nao">Não</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nome acompanhante -->
+      <div class="field" id="nomeAcompField" style="display:none;">
+        <label>Nome do(a) acompanhante</label>
+        <input type="text" name="nome_acompanhante" placeholder="Nome completo">
+      </div>
+
+      <!-- Crianças -->
+      <div class="field" id="criancasField">
+        <label>Vai levar crianças?</label>
+        <div class="option-group">
+          <div class="option-item">
+            <input type="radio" name="criancas" id="cri_sim" value="Sim">
+            <label for="cri_sim">Sim</label>
+          </div>
+          <div class="option-item">
+            <input type="radio" name="criancas" id="cri_nao" value="Não" checked>
+            <label for="cri_nao">Não</label>
+          </div>
+        </div>
+        <div class="children-details" id="childrenDetails">
+          <div class="field" style="margin-bottom: 0;">
+            <label>Quantas crianças?</label>
+            <input type="number" name="qtd_criancas" min="1" max="6" value="1" style="width: 80px; text-align: center;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Observações -->
+      <div class="field">
+        <label>Alguma observação? (restrição alimentar, etc.)</label>
+        <textarea name="observacoes" placeholder="Ex: sou vegetariano, tenho alergia a frutos do mar..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Enviar confirmação</button>
+
+      <div class="msg" id="msgBox"></div>
+    </form>
+
+    <!-- Success screen -->
+    <div class="success-screen" id="successScreen">
+      <div class="check">💜</div>
+      <h2>Confirmação recebida!</h2>
+      <p>Obrigada por responder! Nos vemos dia 26 de abril em Santa Teresa. Vai ser demais!</p>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <p>Responda até <strong>4 de abril de 2026</strong> · Alinne 50 Anos</p>
+  </div>
+</div>
+
+<script>
+// ── Toggle visibility based on choices ──
+document.querySelectorAll('input[name="presenca"]').forEach(r => {
+  r.addEventListener('change', () => {
+    const going = document.getElementById('pres_sim').checked;
+    document.getElementById('acompanhanteField').style.display = going ? '' : 'none';
+    document.getElementById('criancasField').style.display = going ? '' : 'none';
+    document.getElementById('nomeAcompField').style.display = 'none';
+  });
+});
+
+document.querySelectorAll('input[name="acompanhante"]').forEach(r => {
+  r.addEventListener('change', () => {
+    const sim = document.getElementById('acomp_sim').checked;
+    document.getElementById('nomeAcompField').style.display = sim ? '' : 'none';
+  });
+});
+
+document.querySelectorAll('input[name="criancas"]').forEach(r => {
+  r.addEventListener('change', () => {
+    const sim = document.getElementById('cri_sim').checked;
+    document.getElementById('childrenDetails').classList.toggle('visible', sim);
+  });
+});
+
+// ── Form submission ──
+// IMPORTANTE: Substitua a URL abaixo pela URL do seu Google Apps Script (Web App)
+// Veja as instruções no arquivo INSTRUCOES_GOOGLE_SHEETS.md
+
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7vicPvnvvjQTVJyxNYkN73MheK9HPbl2_JJotHBf2t3VpAm9zXQciXCe952Z6NgChpA/exec';
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const msgBox = document.getElementById('msgBox');
+  
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  msgBox.className = 'msg';
+  msgBox.style.display = 'none';
+
+  const form = document.getElementById('rsvpForm');
+  const data = new FormData(form);
+  
+  // Build the payload
+  const payload = {
+    timestamp: new Date().toLocaleString('pt-BR'),
+    nome: data.get('nome'),
+    whatsapp: data.get('whatsapp'),
+    presenca: data.get('presenca'),
+    acompanhante: data.get('acompanhante') || 'Não',
+    nome_acompanhante: data.get('nome_acompanhante') || '',
+    criancas: data.get('criancas') || 'Não',
+    qtd_criancas: data.get('criancas') === 'Sim' ? (data.get('qtd_criancas') || '1') : '0',
+    observacoes: data.get('observacoes') || ''
+  };
+
+  try {
+    const resp = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    // no-cors always returns opaque response, so we assume success
+    document.getElementById('rsvpForm').style.display = 'none';
+    document.getElementById('successScreen').classList.add('visible');
+  } catch (err) {
+    msgBox.textContent = 'Ops, algo deu errado. Tente de novo ou mande uma mensagem pra Alinne!';
+    msgBox.className = 'msg error';
+    btn.disabled = false;
+    btn.textContent = 'Enviar confirmação';
+  }
+}
+</script>
+</body>
+</html>
